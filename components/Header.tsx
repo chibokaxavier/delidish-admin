@@ -12,9 +12,9 @@ import { RxAvatar } from "react-icons/rx";
 
 const Header = () => {
   return (
-    <header className="py-8  lg:mx-20 sm:mx-10 mx-5">
+    <header className="py-3  px-20  border-b-2 border-gray-300">
       <div className=" flex justify-between items-center">
-        <Link href={"/"}>
+        <Link href={"/"} className="flex flex-col text-rose-600">
           <h1 className="md:text-4xl text-2xl font-semibold text-rose-600">
             <span className="flex gap-2 items-center justify-center">
               {" "}
@@ -23,6 +23,7 @@ const Header = () => {
               <span className="text-accent">.</span>
             </span>
           </h1>
+          <p className="text-lg font-semibold ">Admin Panel</p>
         </Link>
         <div className="flex items-center">
           <div className="flex md:gap-7 gap-3 relative justify-center items-center">
