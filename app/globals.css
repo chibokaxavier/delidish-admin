@@ -5,3 +5,12 @@
 body {
   font-family: var(--font-jetbrainsMono, monospace) !important;
 }
+
+@layer components {
+  .form_input {
+    @apply w-[500px] px-4 py-1 border border-solid border-black focus:outline-none  text-[16px] leading-7 text-gray-800 cursor-pointer placeholder:text-gray-500 placeholder:text-sm rounded-sm;
+  }
+  .form_label {
+    @apply  font-semibold text-[16px] mb-2;
+  }
+}

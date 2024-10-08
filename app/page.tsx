@@ -1,9 +1,3 @@
-
-
 export default function Home() {
-  return (
-   <div className="text-green-700">
-    fghj
-   </div>
-  );
+  return <div className="text-green-700"></div>;
 }

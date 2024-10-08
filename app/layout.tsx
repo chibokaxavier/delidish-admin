@@ -3,6 +3,8 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -22,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jetBrainsMono.variable}>
-        <Header />
-        <div className="flex">
-          <Sidebar />
-          {children}
-        </div>
+        <PrimeReactProvider>
+          <Header />
+          <div className="flex">
+            <Sidebar />
+            {children}
+          </div>
+        </PrimeReactProvider>
       </body>
     </html>
   );
