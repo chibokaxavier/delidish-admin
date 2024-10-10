@@ -49,6 +49,10 @@ const page = () => {
     const data = await uploadImageToCloudinary(file);
     setFormData({ ...formData, image: data?.url });
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
   return (
     <form className="mt-14 ml-10">
       <div className="flex flex-col">
@@ -59,7 +63,7 @@ const page = () => {
           </label>
           {formData.image ? (
             <div className=" bg-gray-100 flex flex-col justify-center items-center cursor-pointer">
-              <img src={photoPreview} alt="" className="h-[80px] w-[170px]"/>
+              <img src={photoPreview} alt="" className="h-[80px] w-[170px]" />
             </div>
           ) : (
             <div className="h-[80px] w-[170px] bg-gray-100 flex flex-col justify-center items-center cursor-pointer">
@@ -73,7 +77,7 @@ const page = () => {
             name="photo"
             id="customFile"
             accept=".jpg,.png"
-             onChange={handleFileInputChange}
+            onChange={handleFileInputChange}
             className="absolute  left-0 top-0 w-[170px] h-full opacity-0  cursor-pointer"
           />
         </div>
@@ -83,7 +87,7 @@ const page = () => {
             <input
               type="text"
               name="name"
-              // onChange={handleInputChange}
+              onChange={handleInputChange}
               placeholder="Type here"
               className="form_input"
             />
@@ -92,12 +96,12 @@ const page = () => {
         <div className="mb-5">
           <p className="form_label">Product description</p>
           <textarea
-            name="about"
+            name="description"
             id=""
             rows={5}
-            // value={formData.about}
+            // value={formData.description}
             placeholder="Write Content here"
-            // onChange={handleInputChange}
+            onChange={handleInputChange}
             className="form_input pt-2"
           ></textarea>
         </div>
@@ -109,6 +113,7 @@ const page = () => {
                 name="category"
                 id=""
                 className="py-3.5 border-2 border-black w-[200px] px-5"
+                onChange={handleInputChange}
               >
                 <option value="">Select</option>
                 <option value="salad">Salad</option>
@@ -128,6 +133,7 @@ const page = () => {
                 type="number"
                 placeholder="100"
                 name="price"
+                onChange={handleInputChange}
                 className="border-2 border-black w-[200px] h-[55px] px-2"
               />
             </div>
