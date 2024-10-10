@@ -52,14 +52,14 @@ const page = () => {
   return (
     <form className="mt-14 ml-10">
       <div className="flex flex-col">
-        <div className="flex flex-col items-start mb-5">
+        <div className="flex flex-col items-start mb-5 relative ">
           {/* <p className="pb-3 font-semibold">Upload image</p>{" "} */}
           <label htmlFor="customFile" className=" ">
             Upload image
           </label>
           {formData.image ? (
-            <div className="h-[80px] w-[170px] bg-gray-100 flex flex-col justify-center items-center cursor-pointer">
-              <img src={photoPreview} alt="" />
+            <div className=" bg-gray-100 flex flex-col justify-center items-center cursor-pointer">
+              <img src={photoPreview} alt="" className="h-[80px] w-[170px]"/>
             </div>
           ) : (
             <div className="h-[80px] w-[170px] bg-gray-100 flex flex-col justify-center items-center cursor-pointer">
@@ -74,7 +74,7 @@ const page = () => {
             id="customFile"
             accept=".jpg,.png"
              onChange={handleFileInputChange}
-            className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            className="absolute  left-0 top-0 w-[170px] h-full opacity-0  cursor-pointer"
           />
         </div>
         <div>
