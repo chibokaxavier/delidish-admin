@@ -43,34 +43,37 @@ const page = () => {
         <div className="mb-5">
           <div className="grid grid-cols-2 gap-5 mb-[30px]">
             <div>
-              <p className="form_label">Gender*</p>
+              <p className="form_label">Product Category</p>
               <select
-                name="gender"
+                name="category"
                 id=""
-                // value={formData.gender}
-                // onChange={handleInputChange}
-                className="py-3.5 form_input"
+                className="py-3.5 border-2 border-black w-[200px] px-5"
               >
                 <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+                <option value="salad">Salad</option>
+                <option value="rolls">Rolls</option>
+                <option value="deserts">Deserts</option>
+                <option value="sandwich">Sandwich</option>{" "}
+                <option value="cake">Cake</option>{" "}
+                <option value="pure veg">Pure Veg</option>
+                <option value="pasta">Pasta</option>{" "}
+                <option value="noodles">Noodles</option>{" "}
               </select>
             </div>
-           
+
             <div>
-              <p className="form_label"> Ticket Price*</p>
+              <p className="form_label"> Product Price</p>
               <input
                 type="number"
                 placeholder="100"
-                // onChange={handleInputChange}
-                //@ts-ignore
-                // value={formData.ticketPrice}
-                name="ticketPrice"
-                className="form_input"
+                name="price"
+                className="border-2 border-black w-[200px] h-[55px] px-2"
               />
             </div>
           </div>
+        </div>
+        <div className="mb-5">
+          <button className="flex justify-center p-4 bg-black text-white w-[200px] ">ADD</button>
         </div>
       </div>
     </form>
