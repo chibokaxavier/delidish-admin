@@ -49,6 +49,9 @@ const page = () => {
     const data = await uploadImageToCloudinary(file);
     setFormData({ ...formData, image: data?.url });
   };
+  const onSubmitHandler=()=>{
+    
+  }
 
   useEffect(() => {
     console.log(formData);
@@ -140,7 +143,7 @@ const page = () => {
           </div>
         </div>
         <div className="mb-5">
-          <button className="flex justify-center p-4 bg-black text-white w-[200px] ">
+          <button type="submit" className="flex justify-center p-4 bg-black text-white w-[200px] ">
             ADD
           </button>
         </div>
