@@ -1,8 +1,10 @@
 "use client";
 import uploadImageToCloudinary from "@/utils";
+import axios from "axios";
 import { InputText } from "primereact/inputtext";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { Toast } from "primereact/toast";
 
 interface FormData {
   name: string;
@@ -13,7 +15,7 @@ interface FormData {
 }
 
 const page = () => {
-  const [value, setValue] = useState("");
+  const toast = useRef<Toast>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
@@ -26,6 +28,14 @@ const page = () => {
     undefined
   );
 
+  const showSuccess = () => {
+    toast.current?.show({
+      severity: "success",
+      summary: "Success",
+      detail: " Food Added Successfully",
+      life: 3000,
+    });
+  };
   useEffect(() => {
     if (formData.image instanceof File) {
       const objectUrl = URL.createObjectURL(formData.image);
@@ -41,6 +51,8 @@ const page = () => {
     }
   }, [formData.image]);
 
+  const url = "http://localhost:4000";
+
   const handleInputChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -49,15 +61,27 @@ const page = () => {
     const data = await uploadImageToCloudinary(file);
     setFormData({ ...formData, image: data?.url });
   };
-  const onSubmitHandler=()=>{
-    
-  }
+  const onSubmitHandler = async (e: any) => {
+    e.preventDefault();
+    const res = await axios.post(`${url}/api/food/add`, formData);
+    if (res.data.success) {
+      showSuccess();
+      setFormData({
+        name: "",
+        description: "",
+        category: "",
+        price: 0,
+        image: null,
+      });
+    }
+  };
 
   useEffect(() => {
     console.log(formData);
   }, [formData]);
   return (
-    <form className="mt-14 ml-10">
+    <form className="mt-14 ml-10" onSubmit={onSubmitHandler}>
+      <Toast ref={toast} />
       <div className="flex flex-col">
         <div className="flex flex-col items-start mb-5 relative ">
           {/* <p className="pb-3 font-semibold">Upload image</p>{" "} */}
@@ -79,6 +103,7 @@ const page = () => {
             type="file"
             name="photo"
             id="customFile"
+            required
             accept=".jpg,.png"
             onChange={handleFileInputChange}
             className="absolute  left-0 top-0 w-[170px] h-full opacity-0  cursor-pointer"
@@ -90,9 +115,11 @@ const page = () => {
             <input
               type="text"
               name="name"
+              value={formData.name}
               onChange={handleInputChange}
               placeholder="Type here"
               className="form_input"
+              required
             />
           </div>{" "}
         </div>
@@ -103,8 +130,10 @@ const page = () => {
             id=""
             rows={5}
             // value={formData.description}
+            value={formData.description}
             placeholder="Write Content here"
             onChange={handleInputChange}
+            required
             className="form_input pt-2"
           ></textarea>
         </div>
@@ -117,6 +146,8 @@ const page = () => {
                 id=""
                 className="py-3.5 border-2 border-black w-[200px] px-5"
                 onChange={handleInputChange}
+                required
+                value={formData.category}
               >
                 <option value="">Select</option>
                 <option value="salad">Salad</option>
@@ -137,13 +168,18 @@ const page = () => {
                 placeholder="100"
                 name="price"
                 onChange={handleInputChange}
+                required
+                value={formData.price}
                 className="border-2 border-black w-[200px] h-[55px] px-2"
               />
             </div>
           </div>
         </div>
         <div className="mb-5">
-          <button type="submit" className="flex justify-center p-4 bg-black text-white w-[200px] ">
+          <button
+            type="submit"
+            className="flex justify-center p-4 bg-black text-white w-[200px] "
+          >
             ADD
           </button>
         </div>
