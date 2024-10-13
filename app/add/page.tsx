@@ -28,11 +28,19 @@ const page = () => {
     undefined
   );
 
-  const showSuccess = () => {
+  const showSuccess = (message: string) => {
     toast.current?.show({
       severity: "success",
       summary: "Success",
-      detail: " Food Added Successfully",
+      detail: message,
+      life: 3000,
+    });
+  };
+  const showError = (message: any) => {
+    toast.current?.show({
+      severity: "error",
+      summary: "Error",
+      detail: message,
       life: 3000,
     });
   };
@@ -65,7 +73,7 @@ const page = () => {
     e.preventDefault();
     const res = await axios.post(`${url}/api/food/add`, formData);
     if (res.data.success) {
-      showSuccess();
+      showSuccess(res.data.message);
       setFormData({
         name: "",
         description: "",
@@ -73,6 +81,8 @@ const page = () => {
         price: 0,
         image: null,
       });
+    } else {
+      showError(res.data.message);
     }
   };
 
