@@ -85,10 +85,6 @@ const page = () => {
       showError(res.data.message);
     }
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
   return (
     <form className="mt-14 ml-10" onSubmit={onSubmitHandler}>
       <Toast ref={toast} />

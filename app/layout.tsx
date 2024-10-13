@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { NextUIProvider } from "@nextui-org/react";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -25,11 +26,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={jetBrainsMono.variable}>
         <PrimeReactProvider>
-          <Header />
-          <div className="flex">
-            <Sidebar />
-            {children}
-          </div>
+          <NextUIProvider>
+            <Header />
+            <div className="flex">
+              <Sidebar />
+              {children}
+            </div>
+          </NextUIProvider>
         </PrimeReactProvider>
       </body>
     </html>
