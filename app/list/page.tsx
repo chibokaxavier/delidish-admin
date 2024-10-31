@@ -41,7 +41,6 @@ const page = () => {
   const fetchList = async () => {
     setLoading(true);
     const res = await axios.get(`${url}/api/food/list`);
-    console.log(res);
     if (res.data.success) {
       setList(res.data.data);
       setLoading(false);
@@ -70,7 +69,9 @@ const page = () => {
   return (
     <div className="mt-14 ml-10">
       <Toast ref={toast} />
-      <p className="font-semibold text-3xl ml-5  mb-5">All food list </p>
+      <p className="font-semibold text-3xl ml-5  mb-5">
+        All food list ({list?.length}){" "}
+      </p>
       <div className="grid grid-cols-10 gap-4 px-4 py-3 text-lg font-semibold border w-[1100px] ">
         <div className="col-span-2">Image</div>
         <div className="col-span-2">Name</div>

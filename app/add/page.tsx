@@ -18,7 +18,7 @@ const page = () => {
   const toast = useRef<Toast>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    description: "",
+    description: "Food provides essential nutrients for overall health and well-being",
     category: "",
     price: 0,
     image: null,
@@ -76,7 +76,7 @@ const page = () => {
       showSuccess(res.data.message);
       setFormData({
         name: "",
-        description: "",
+        description: "Food provides essential nutrients for overall health and well-being",
         category: "",
         price: 0,
         image: null,
